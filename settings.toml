@@ -1,0 +1,19 @@
+# garmin-sync settings
+#
+# Edit this file to select the activities that the sync gets.
+# You can edit it on GitHub: open the file, then select the pencil icon.
+#
+# Use Garmin parent activity type keys.
+# Use only lowercase letters, digits and "_".
+# The Garmin documentation confirms these keys: "running", "cycling".
+# A parent type includes all its subtypes.
+# Example: "running" includes trail running, treadmill running and track running.
+
+# The sync gets the activities of these types.
+# To sync no activities, use: activity_types = []
+activity_types = ["running", "cycling"]
+
+# The sync gets the full activity detail for these types only.
+# Each type in this list must also be in activity_types.
+# Each activity in this list adds one API request to each run.
+detail_activity_types = ["running"]
