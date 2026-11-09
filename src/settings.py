@@ -38,7 +38,8 @@ def _read_key_list(data: dict, name: str) -> tuple[str, ...]:
     return tuple(value)
 
 
-def load(path: Path = SETTINGS_FILE) -> Settings:
+def load(path: Path | None = None) -> Settings:
+    path = SETTINGS_FILE if path is None else path
     try:
         with path.open("rb") as handle:
             data = tomllib.load(handle)

@@ -21,6 +21,27 @@ For example, you can connect Claude to the database with the Supabase connector.
 The setup takes approximately 30 minutes.
 You can do all the steps in a web browser.
 
+## How to set up with Claude
+
+Claude can do some of the setup for you.
+The file [CLAUDE.md](CLAUDE.md) gives the rules for Claude.
+
+1. Do steps 1 to 3 of "How to start" (above).
+2. Open a Claude session that has access to your new repository.
+3. If possible, connect the Supabase connector to the session.
+4. Send this message to Claude. Replace `OWNER/REPO` with the name of your repository:
+
+   ```text
+   Read CLAUDE.md, README.md and docs/SETUP.md in OWNER/REPO.
+   Help me set up garmin-sync, one step at a time.
+   Do the steps that CLAUDE.md permits you to do.
+   Stop and tell me when I must do a step.
+   Do not ask me for secrets.
+   ```
+
+> **WARNING:** You must do these steps yourself: set the database password, make the `DATABASE_URL`, make the Garmin API key, and add the GitHub secrets.
+> Do not give these secrets to Claude.
+
 ## What the tool does
 
 Each day at 09:30 UTC, the tool gets the data for the last 3 days.
@@ -67,6 +88,21 @@ The comments in `settings.toml` give the rules.
 | [docs/SETUP.md](docs/SETUP.md) | Procedure to set up the tool with your accounts |
 | [docs/OPERATIONS.md](docs/OPERATIONS.md) | Procedures to run the tool, read failures and change secrets |
 | [docs/DATA.md](docs/DATA.md) | Data that the tool stores, and data that Garmin does not supply |
+| [CLAUDE.md](CLAUDE.md) | Rules for a Claude session that works on this repository |
+
+## Tests
+
+The tests use a fake Garmin server. They do not use your accounts.
+GitHub runs the tests for each pull request (workflow `tests`).
+
+To run the tests on your computer:
+
+```bash
+python -m pip install --no-deps -r requirements.txt
+python -m unittest discover -s tests -v
+```
+
+The database tests need a test Postgres database. Read the top of `tests/test_db.py`.
 
 ## Licence
 
